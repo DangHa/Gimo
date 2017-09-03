@@ -86,8 +86,25 @@ func main() {
 	http.HandleFunc("/countryLeaders.html", Country)
 	http.HandleFunc("/about.html", About)
 
+	//Xoa sau khi day vao server
+	http.HandleFunc("/hide.html", Hide)
+
 	http.Handle("/view/", http.StripPrefix("/view", http.FileServer(http.Dir("view"))))
-	http.ListenAndServe(":8080", nil)
+	port := "8080"
+	http.ListenAndServe(":"+port, nil)
+}
+
+//Hide
+func Hide(w http.ResponseWriter, r *http.Request) {
+	tpl, err := template.ParseFiles("view/hide.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = tpl.ExecuteTemplate(w, "hide.html", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 //Home - leaderBoard

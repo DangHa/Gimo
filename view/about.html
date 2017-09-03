@@ -8,6 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="view/css/bootstrap.min.css" rel="stylesheet">
     <script src="view/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $("#appear").click(function(){
+          $("#code").fadeIn(500);
+          $("#code").fadeOut(500);
+        });
+      });
+    </script>
 
     <style>
       /* Remove the navbar's default margin-bottom and rounded borders */
@@ -44,9 +54,10 @@
     </div>
   </nav>
 
-  <div class="page-title" align="right" style="color: white">
-    <h4 style="color: #ffbf9a">Thank you!</h4>
-  </div>
+
+  <h4 style="color: #ffbf9a" align="right" id="appear">Thank you!</h4>
+
+  <h4 id="code" align="center" style="color: gray;display:none;">Caesar Finn-1</h4>
 
 </body>
 
