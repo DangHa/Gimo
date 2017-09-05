@@ -180,9 +180,9 @@ func topCountryUpdate(s *mgo.Session, topCoun *[]topCountrys) {
 	}
 
 	//Sap xep
-	for i := 0; i < len(scoresCountry); i++ {
-		for j := i + 1; j < len(scoresCountry)-1; j++ {
-			if scoresCountry[i] > scoresCountry[j] {
+	for i := 0; i < len(scoresCountry)-1; i++ {
+		for j := i + 1; j < len(scoresCountry); j++ {
+			if scoresCountry[i] < scoresCountry[j] {
 				tmpScores := scoresCountry[i]
 				scoresCountry[i] = scoresCountry[j]
 				scoresCountry[j] = tmpScores
@@ -199,6 +199,7 @@ func topCountryUpdate(s *mgo.Session, topCoun *[]topCountrys) {
 	if length > 10 { //Tra ve 100 nguoi dung dau
 		length = 10
 	}
+
 	for i := 0; i < length; i++ {
 		*topCoun = append(*topCoun, topCountrys{int16(i + 1), nameCountry[i], scoresCountry[i]})
 	}
