@@ -160,6 +160,9 @@ func topCountryUpdate(s *mgo.Session, topCoun *[]topCountrys) {
 		return
 	}
 
+	//Set lai top Coun = null
+	*topCoun = []topCountrys{}
+
 	//Doi sang Country - Scores (2 mang)
 	allCountrySearch := make(map[string]int16) //Name Country: Vi tri cua no trong array nameCountry
 	var nameCountry []string
