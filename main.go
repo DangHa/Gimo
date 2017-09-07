@@ -13,12 +13,14 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+//Bao loi tra ve
 func ErrorWithJSON(w http.ResponseWriter, message string, code int) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(code)
 	fmt.Fprintf(w, "{message: %q}", message)
 }
 
+//Phan hoi tra ve
 func ResponseWithJSON(w http.ResponseWriter, json []byte, code int) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -26,6 +28,7 @@ func ResponseWithJSON(w http.ResponseWriter, json []byte, code int) {
 	w.Write(json)
 }
 
+//Document - Member
 type ListMember struct { //Struct cua JSON input
 	Id      bson.ObjectId `bson:"_id,omitempty"`
 	Name    string        `bson:"Name"`
@@ -34,14 +37,16 @@ type ListMember struct { //Struct cua JSON input
 	Country string        `bson:"Country"`
 }
 
-type NotEmailListMember struct { //Ko cho lay email cua client
+//Gui JSON khong chua email cho web
+type NotEmailListMember struct {
 	Position int16  `bson:"Position"`
 	Name     string `bson:"Name"`
 	Scores   int64  `bson:"Scores"`
 	Country  string `bson:"Country"`
 }
 
-type yourPosition struct { //Tra ve vi tri cua client
+//Position - tra ve json chua position cho app IOS
+type yourPosition struct {
 	Position int64
 }
 
@@ -146,7 +151,7 @@ func About(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//Update khi Hour%5==0
+//Update khi Hour%3==0
 func topCountryUpdate(s *mgo.Session, topCoun *[]topCountrys) {
 	session := s.Copy()
 	defer session.Close()
@@ -214,7 +219,7 @@ func topCountrySend(s *mgo.Session, topCoun *[]topCountrys, checkUpdate *bool) f
 			*checkUpdate = false
 			topCountryUpdate(s, topCoun) //Cap nhat
 		}
-		if time.Now().Hour()%5 == 0 && *checkUpdate == false {
+		if time.Now().Hour()%3 == 0 && *checkUpdate == false {
 			*checkUpdate = true
 		}
 
