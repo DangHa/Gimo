@@ -41,7 +41,7 @@ function CreateMemberTableFromJSON(data) {
 
 $( document ).ready(function() {
   //Get JSON
-  var url = 'http://localhost:8080/member'
+  var url = 'http://ec2-52-89-58-97.us-west-2.compute.amazonaws.com:8080/member'
   $.getJSON(url, function(data){
     console.log("It Worked!");
     CreateMemberTableFromJSON(data)
