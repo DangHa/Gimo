@@ -173,6 +173,7 @@ func topCountryUpdate(s *mgo.Session, topCoun *[]topCountrys) {
 	var nameCountry []string
 	var scoresCountry []int64
 	var position int16 = 1 //Vi tri them vao
+
 	for i := 0; i < len(members); i++ {
 		if allCountrySearch[members[i].Country] == 0 {
 			allCountrySearch[members[i].Country] = position

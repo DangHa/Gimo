@@ -30,9 +30,9 @@
     padding: 8px;
   }
 
-  tr:nth-child(even){background-color: #f2f2f2}
+  tr:nth-child(even){background-color: #d5edf9}
 
   th {
-    background-color: #d5edf9;
-    color: black;
+    background-color: black;
+    color: white;
   }
